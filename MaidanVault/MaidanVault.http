@@ -1,0 +1,6 @@
+@MaidanVault_HostAddress = http://localhost:5072
+
+GET {{MaidanVault_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

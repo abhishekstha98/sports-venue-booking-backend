@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35514.174 d17.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaidanVault_API", "MaidanVault\MaidanVault_API.csproj", "{FF29871F-62F2-4E05-9145-4206F4142C54}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{4FB7301E-2BB0-406D-8D25-5D2F65CB20D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{5721557E-B286-4462-8E60-B5C4B5460596}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{EF3D813F-7523-4E96-A06E-A3BD78452EAA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FF29871F-62F2-4E05-9145-4206F4142C54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF29871F-62F2-4E05-9145-4206F4142C54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF29871F-62F2-4E05-9145-4206F4142C54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF29871F-62F2-4E05-9145-4206F4142C54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4FB7301E-2BB0-406D-8D25-5D2F65CB20D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FB7301E-2BB0-406D-8D25-5D2F65CB20D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FB7301E-2BB0-406D-8D25-5D2F65CB20D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FB7301E-2BB0-406D-8D25-5D2F65CB20D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5721557E-B286-4462-8E60-B5C4B5460596}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5721557E-B286-4462-8E60-B5C4B5460596}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5721557E-B286-4462-8E60-B5C4B5460596}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5721557E-B286-4462-8E60-B5C4B5460596}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF3D813F-7523-4E96-A06E-A3BD78452EAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF3D813F-7523-4E96-A06E-A3BD78452EAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF3D813F-7523-4E96-A06E-A3BD78452EAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF3D813F-7523-4E96-A06E-A3BD78452EAA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
