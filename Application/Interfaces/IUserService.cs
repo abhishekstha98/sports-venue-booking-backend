@@ -7,7 +7,7 @@ using Domain.Entities;
 namespace Application.Interfaces
 {
     public interface IUserService
-    {
-        Task<bool> RegisterUserAsync(User user);
+    {        Task<string> LoginAsync(LoginRequest loginRequest);
+        Task<string> SignUpAsync(User user);
     }
 }

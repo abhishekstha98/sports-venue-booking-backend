@@ -1,0 +1,17 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/MaidanVault/bin/Debug/net8.0
+/MaidanVault/obj
+/Infrastructure/obj
+/Infrastructure/bin/Debug/net8.0
+/Domain/obj
+/Domain/bin/Debug/net8.0
+/Application/obj
+/Application/bin/Debug/net8.0
+/.vs/ProjectEvaluation
+/.vs/MaidanVault_API/FileContentIndex
+*.v2
+/.vs/MaidanVault/v17
+/.vs/MaidanVault/FileContentIndex

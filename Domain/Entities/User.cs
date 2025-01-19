@@ -1,35 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations;
 
-namespace Domain.Entities
+namespace Domain.Entities;
+
+public partial class User
 {
+    public int Id { get; set; }
 
-    public class User
-    {
-        [Key]
-        public int Id { get; set; } // Primary Key
+    public string FullName { get; set; } = null!;
 
-        [Required]
-        [StringLength(100, MinimumLength = 2)]
-        public string FullName { get; set; } // Full Name
+    public string PhoneNumber { get; set; } = null!;
 
-        [Required]
-        [Phone]
-        public string PhoneNumber { get; set; } // Phone Number
+    public string Email { get; set; } = null!;
 
-        [Required]
-        [EmailAddress]
-        public string Email { get; set; } // Email
+    public string PasswordHash { get; set; } = null!;
 
-        [Required]
-        public string PasswordHash { get; set; } // Hashed Password
-
-        [Required]
-        public bool IsPlayer { get; set; } // User Type
-    }
-
+    public bool IsPlayer { get; set; }
 }

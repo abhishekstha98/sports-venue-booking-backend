@@ -15,22 +15,6 @@ namespace MaidanVault_API.Controllers
             _userService = userService;
         }
 
-        [HttpPost("signup")]
-        public async Task<IActionResult> Signup([FromBody] User user)
-        {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-
-            try
-            {
-                await _userService.RegisterUserAsync(user);
-                return Ok("User registered successfully.");
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
     }
 
 
