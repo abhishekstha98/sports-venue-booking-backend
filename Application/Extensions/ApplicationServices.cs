@@ -13,9 +13,10 @@ namespace Application.Extensions
         {
             services.AddScoped<IGenericUnitOfWork, GenericUnitOfWork>();
             services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<IUserService, UserService>();
             services.AddScoped<IVenueRepository, VenueRepository>();
+            services.AddScoped<IUserService, UserService>();
             services.AddScoped<IVenueService, VenueService>();
+            services.AddScoped<IHomeService, HomeService>();
         }
     }
 }
