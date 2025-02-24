@@ -18,35 +18,15 @@ namespace MaidanVault_API.Controllers
         [HttpPost("signup")]
         public async Task<IActionResult> SignUp([FromBody] User user)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-
-            try
-            {
-                var message = await _userService.SignUpAsync(user);
-                return Ok(new { Message = message });
-            }
-            catch (InvalidOperationException ex)
-            {
-                return BadRequest(new { Error = ex.Message });
-            }
+            var message = await _userService.SignUpAsync(user);
+            return Ok(new { message });
         }
 
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginRequest loginRequest)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-
-            try
-            {
-                var token = await _userService.LoginAsync(loginRequest);
-                return Ok(new { Message = "Login successful!", Token = token });
-            }
-            catch (UnauthorizedAccessException ex)
-            {
-                return Unauthorized(new { Error = ex.Message });
-            }
+            var token = await _userService.LoginAsync(loginRequest);
+            return Ok(new { message = "Login successful!", token });
         }
     }
 

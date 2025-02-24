@@ -23,11 +23,15 @@ public partial class Venue
 
     public string? Description { get; set; }
 
-    public string? Amenities { get; set; }
+    public string? Name { get; set; }
 
-    public string? Images { get; set; }
+    public decimal? Ratings { get; set; }
 
-    public virtual ICollection<Amenity> AmenitiesNavigation { get; set; } = new List<Amenity>();
+    public virtual ICollection<Amenity> Amenities { get; set; } = new List<Amenity>();
 
-    public virtual ICollection<Image> ImagesNavigation { get; set; } = new List<Image>();
+    public virtual ICollection<Booking> Bookings { get; set; } = new List<Booking>();
+
+    public virtual ICollection<Image> Images { get; set; } = new List<Image>();
+
+    public virtual ICollection<Tournament> Tournaments { get; set; } = new List<Tournament>();
 }
