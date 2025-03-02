@@ -25,10 +25,24 @@ namespace Application.Services
         {
             var user = await _userRepository.GetByEmailAsync(loginRequest.EmailOrPhone)
                        ?? await _userRepository.GetByPhoneNumberAsync(loginRequest.EmailOrPhone);
-
-            if (user == null || !PasswordHasher.VerifyPassword(loginRequest.Password, user.PasswordHash))
-                throw new UnauthorizedAccessException("Invalid email/phone or password.");
             List<object> response = new List<object>();
+
+            if (user == null)
+            {
+                response.Add("Could not find the user.");
+                //response.Add("");
+                //response.Add("");
+                return response;
+            }
+            else if (!PasswordHasher.VerifyPassword(loginRequest.Password, user.PasswordHash))
+            {
+                response.Add("Invalid email/phone or password.");
+                //response.Add("");
+                //response.Add("");
+                return response;
+            }
+            user.PasswordHash = "";
+            response.Add("Login successful!");
             response.Add(JwtTokenHelper.GenerateToken(user, _configuration));
             response.Add(user);
             return response;

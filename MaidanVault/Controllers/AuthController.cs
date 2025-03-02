@@ -29,14 +29,17 @@ namespace MaidanVault_API.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginRequest loginRequest)
         {
-            var token = await _userService.LoginAsync(loginRequest);
             try
             {
-                return Ok(new { Message = "Login successful!", Token = token[0], User = token[1] }); // msg, token, userid
+                var response = await _userService.LoginAsync(loginRequest);
+                if (response.Count() > 1)
+                    return Ok(new { Message = response[0], Token = response[1], User = response[2] }); // msg, token, userid
+                else
+                    return Ok(new { Message = response[0] }); // msg, token, userid
             }
-            catch (UnauthorizedAccessException ex)
+            catch (Exception ex)
             {
-                return Unauthorized(new { Message = ex.Message });
+                return BadRequest(new { Message = "Something went wrong please try again!" });
             }
         }
     }
