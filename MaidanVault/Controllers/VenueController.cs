@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
 [Route("api/venue")]
+[Authorize] // Protects all endpoints in this controller
 public class VenuesController : ControllerBase
 {
     private readonly IVenueService _venueService;

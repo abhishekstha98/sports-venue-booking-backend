@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
  // Protects all routes in this controller
 [ApiController]
 [Route("api/home")]
+[Authorize] // Protects all endpoints in this controller
 public class HomeController : ControllerBase
 {
     private readonly IHomeService _homeService;

@@ -8,7 +8,7 @@ using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//  Configure JWT Authentication
+// Configure JWT Authentication
 var jwtSettings = builder.Configuration.GetSection("JwtSettings");
 var secretKey = Encoding.UTF8.GetBytes(jwtSettings["Secret"]);
 
@@ -31,15 +31,15 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
-//  Configure Database Connection
+// Configure Database Connection
 var connectionString = builder.Configuration.GetConnectionString("MaidanVaultDatabase");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 
-//  Register Application Services
+// Register Application Services
 builder.Services.AddApplicationServices();
 
-//  Configure Swagger to Require JWT Authentication
+// Configure Swagger to Require JWT Authentication
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "MaidanVault_API", Version = "v1" });
@@ -63,16 +63,19 @@ builder.Services.AddSwaggerGen(c =>
             new string[] { }
         }
     });
+
+    // Forces Swagger to include Authorization header in cURL requests
+    c.OperationFilter<AuthorizeCheckOperationFilter>();
 });
 
-//  Add Controllers and API Explorer
+
+// Add Controllers and API Explorer
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
 var app = builder.Build();
 
-
-//  Configure Middleware
+// Configure Middleware
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -81,7 +84,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-//  Apply Authentication Before Authorization
+// Apply Authentication Before Authorization
 app.UseAuthentication();
 app.UseAuthorization();
 
