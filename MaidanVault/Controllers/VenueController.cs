@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/venue")]
 public class VenuesController : ControllerBase
 {
     private readonly IVenueService _venueService;

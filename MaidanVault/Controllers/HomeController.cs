@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
  // Protects all routes in this controller
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/home")]
 public class HomeController : ControllerBase
 {
     private readonly IHomeService _homeService;

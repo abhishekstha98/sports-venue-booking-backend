@@ -30,15 +30,11 @@ namespace Application.Services
             if (user == null)
             {
                 response.Add("Could not find the user.");
-                //response.Add("");
-                //response.Add("");
                 return response;
             }
             else if (!PasswordHasher.VerifyPassword(loginRequest.Password, user.PasswordHash))
             {
                 response.Add("Invalid email/phone or password.");
-                //response.Add("");
-                //response.Add("");
                 return response;
             }
             user.PasswordHash = "";
