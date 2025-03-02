@@ -1,6 +1,8 @@
 ﻿using Application.Interfaces;
 using Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
 
 namespace MaidanVault_API.Controllers
 {
@@ -9,10 +11,12 @@ namespace MaidanVault_API.Controllers
     public class AuthController : ControllerBase
     {
         private readonly IUserService _userService;
+        private readonly IHomeService _homeService;
 
-        public AuthController(IUserService userService)
+        public AuthController(IUserService userService, IHomeService homeService)
         {
             _userService = userService;
+            _homeService = homeService;
         }
 
         [HttpPost("signup")]
@@ -26,7 +30,14 @@ namespace MaidanVault_API.Controllers
         public async Task<IActionResult> Login([FromBody] LoginRequest loginRequest)
         {
             var token = await _userService.LoginAsync(loginRequest);
-            return Ok(new { message = "Login successful!", token });
+            try
+            {
+                return Ok(new { Message = "Login successful!", Token = token[0], User = token[1] }); // msg, token, userid
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                return Unauthorized(new { Message = ex.Message });
+            }
         }
     }
 

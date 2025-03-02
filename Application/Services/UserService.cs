@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Application.Helper;
 using Application.Interfaces;
@@ -20,15 +21,17 @@ namespace Application.Services
             _configuration = configuration;
         }
 
-        public async Task<string> LoginAsync(LoginRequest loginRequest)
+        public async Task<List<object>> LoginAsync(LoginRequest loginRequest)
         {
             var user = await _userRepository.GetByEmailAsync(loginRequest.EmailOrPhone)
                        ?? await _userRepository.GetByPhoneNumberAsync(loginRequest.EmailOrPhone);
 
             if (user == null || !PasswordHasher.VerifyPassword(loginRequest.Password, user.PasswordHash))
                 throw new UnauthorizedAccessException("Invalid email/phone or password.");
-
-            return JwtTokenHelper.GenerateToken(user, _configuration);
+            List<object> response = new List<object>();
+            response.Add(JwtTokenHelper.GenerateToken(user, _configuration));
+            response.Add(user);
+            return response;
         }
 
         public async Task<string> SignUpAsync(User user)

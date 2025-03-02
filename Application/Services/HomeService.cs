@@ -71,17 +71,17 @@ public class HomeService : IHomeService
 
         return new HomeResponse
         {
-            UserProfile = new User
-            {
-                Id = user.Id,
-                FullName = user.FullName,
-                ProfilePicUrl = user.ProfilePicUrl,
-                Points = user.Points,
-                Ranking = user.Ranking
-            },
+            //UserProfile = new User
+            //{
+            //    Id = user.Id,
+            //    FullName = user.FullName,
+            //    ProfilePicUrl = user.ProfilePicUrl,
+            //    Points = user.Points,
+            //    Ranking = user.Ranking
+            //},
             FeaturedVenues = featuredVenues,
             UpcomingBookings = upcomingBookings,
-            Leaderboard = leaderboard,
+            //Leaderboard = leaderboard,
             Tournaments = tournaments,
             Announcements = announcements
         };
