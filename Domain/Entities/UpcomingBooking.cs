@@ -9,7 +9,7 @@ public partial class UpcomingBooking
 
     public int UserId { get; set; }
 
-    public string? VenueName { get; set; }
+    public int Venue { get; set; }
 
     public DateTime BookingDate { get; set; }
 

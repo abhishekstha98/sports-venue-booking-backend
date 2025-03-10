@@ -10,4 +10,8 @@ public partial class Announcement
     public string Title { get; set; } = null!;
 
     public string? Message { get; set; }
+
+    public DateTime? ExpiryDate { get; set; }
+
+    public int ImageId { get; set; }
 }

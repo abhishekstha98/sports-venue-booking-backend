@@ -22,7 +22,16 @@ public class HomeService : IHomeService
 
         var featuredVenues = _context.Venues
             .OrderByDescending(v => v.Ratings)
-            .Take(5).ToList();
+            .Take(5)
+            .Select(b => new Venue
+            {
+                Id = b.Id,
+                VenueAddress = b.VenueAddress,
+                PricePerHour = b.PricePerHour,
+                Name = b.Name,
+                Ratings = b.Ratings,
+                Images = b.Images
+            }).ToList();
 
         var upcomingBookings = _context.Bookings
             .Where(b => b.UserId == userId)
@@ -31,7 +40,7 @@ public class HomeService : IHomeService
             .Select(b => new UpcomingBooking
             {
                 BookingId = b.BookingId,
-                VenueName = b.Venue.Name,
+                Venue = b.VenueId,
                 BookingDate = b.BookingDate,
                 Time = b.Time.ToString(),
                 Status = b.Status
@@ -60,13 +69,15 @@ public class HomeService : IHomeService
             }).ToList();
 
         var announcements = _context.Announcements
-            .OrderByDescending(a => a.AnnouncementId)
+            .OrderBy(a => a.ExpiryDate)
             .Take(5)
             .Select(a => new Announcement
             {
                 AnnouncementId = a.AnnouncementId,
                 Title = a.Title,
-                Message = a.Message
+                Message = a.Message,
+                ImageId = a.ImageId,
+                ExpiryDate = a.ExpiryDate,
             }).ToList();
 
         return new HomeResponse

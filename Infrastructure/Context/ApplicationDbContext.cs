@@ -55,11 +55,26 @@ namespace Infrastructure.Context
 
             modelBuilder.Entity<Announcement>(entity =>
             {
-                entity.HasKey(e => e.AnnouncementId).HasName("PK__Announce__9DE4457432BB64A1");
+                entity.HasKey(e => e.AnnouncementId)
+                      .HasName("PK__Announce__9DE4457432BB64A1");
 
-                entity.Property(e => e.Message).HasMaxLength(255);
-                entity.Property(e => e.Title).HasMaxLength(100);
+                entity.Property(e => e.Title)
+                      .HasMaxLength(100);
+
+                entity.Property(e => e.Message)
+                      .HasMaxLength(255);
+
+                entity.Property(e => e.ExpiryDate)
+                      .HasColumnType("datetime")
+                      .IsRequired(false);
+
+                entity.HasOne<Image>() 
+                      .WithMany()
+                      .HasForeignKey(e => e.ImageId)
+                      .OnDelete(DeleteBehavior.SetNull) 
+                      .HasConstraintName("FK_Announcements_Images");
             });
+
 
             modelBuilder.Entity<Booking>(entity =>
             {
@@ -157,7 +172,7 @@ namespace Infrastructure.Context
                 entity.Property(e => e.BookingDate).HasColumnType("datetime");
                 entity.Property(e => e.Status).HasMaxLength(50);
                 entity.Property(e => e.Time).HasMaxLength(10);
-                entity.Property(e => e.VenueName).HasMaxLength(20);
+                entity.Property(e => e.Venue);
             });
 
             modelBuilder.Entity<User>(entity =>
