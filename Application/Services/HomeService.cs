@@ -77,7 +77,6 @@ public class HomeService : IHomeService
                 AnnouncementId = a.AnnouncementId,
                 Title = a.Title,
                 Message = a.Message,
-                ImageId = a.ImageId,
                 ExpiryDate = a.ExpiryDate,
             }).ToList();
 

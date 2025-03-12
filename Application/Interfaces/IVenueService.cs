@@ -10,7 +10,7 @@ namespace Application.Interfaces
     public interface IVenueService
     {
         Task<List<Venue>> GetAllVenuesAsync();
-        Task<Venue> GetVenueByIdAsync(int id);
+        Task<List<object>> GetVenueByIdAsync(int id);
         Task<Venue> CreateVenueAsync(Venue venue);
         Task<Venue> UpdateVenueAsync(int id, Venue venue);
     }

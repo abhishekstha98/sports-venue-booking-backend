@@ -12,6 +12,4 @@ public partial class Announcement
     public string? Message { get; set; }
 
     public DateTime? ExpiryDate { get; set; }
-
-    public int? ImageId { get; set; }
 }

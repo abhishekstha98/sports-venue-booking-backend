@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Application.Interfaces;
 using Domain.Entities;
+using Domain.Interface;
 using Domain.Interfaces;
 
 namespace Application.Services
@@ -9,9 +10,11 @@ namespace Application.Services
     public class VenueService : IVenueService
     {
         private readonly IVenueRepository _venueRepository;
+        private readonly IGenericUnitOfWork _uow;
 
-        public VenueService(IVenueRepository venueRepository)
+        public VenueService(IVenueRepository venueRepository, IGenericUnitOfWork uow)
         {
+            _uow = uow;
             _venueRepository = venueRepository;
         }
 
@@ -20,9 +23,15 @@ namespace Application.Services
             return await _venueRepository.GetAllAsync();
         }
 
-        public async Task<Venue> GetVenueByIdAsync(int id)
+        public async Task<List<object>> GetVenueByIdAsync(int id)
         {
-            return await _venueRepository.GetByIdAsync(id);
+            var obj = new List<object>();
+            //var venue = await _venueRepository.GetAllAsync();
+            var venue = await _uow.AsyncRepository<Venue>().GetSingleBySpecAsync(x => x.Id == id);
+            var amenities = await _uow.AsyncRepository<Amenity>().ListBySpecAsync(x => x.VenueId == venue.Id);
+            obj.Add(venue);
+            obj.Add(amenities);
+            return obj;
         }
 
         public async Task<Venue> CreateVenueAsync(Venue venue)

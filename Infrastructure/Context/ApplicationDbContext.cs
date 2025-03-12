@@ -67,12 +67,6 @@ namespace Infrastructure.Context
                 entity.Property(e => e.ExpiryDate)
                       .HasColumnType("datetime")
                       .IsRequired(false);
-
-                entity.HasOne<Image>() 
-                      .WithMany()
-                      .HasForeignKey(e => e.ImageId)
-                      .OnDelete(DeleteBehavior.SetNull) 
-                      .HasConstraintName("FK_Announcements_Images");
             });
 
 
