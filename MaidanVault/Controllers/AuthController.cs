@@ -35,7 +35,7 @@ namespace MaidanVault_API.Controllers
                 if (response.Count() > 1)
                     return Ok(new { Message = response[0], Token = response[1], User = response[2] }); // msg, token, userid
                 else
-                    return Ok(new { Message = response[0] }); // msg, token, userid
+                    return BadRequest(new { Message = response[0] }); // msg, token, userid
             }
             catch (Exception ex)
             {

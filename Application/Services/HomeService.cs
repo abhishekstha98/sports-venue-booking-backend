@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Domain.Entities;
@@ -19,8 +20,10 @@ public class HomeService : IHomeService
 
         if (user == null)
             throw new KeyNotFoundException("User not found");
-
-        var featuredVenues = _context.Venues
+        var featuredVenues = new List<Venue>();
+        try
+        {
+            featuredVenues = _context.Venues
             .OrderByDescending(v => v.Ratings)
             .Take(5)
             .Select(b => new Venue
@@ -32,8 +35,16 @@ public class HomeService : IHomeService
                 Ratings = b.Ratings,
                 Images = b.Images
             }).ToList();
+        }
+        catch (Exception ex)
+        {
 
-        var upcomingBookings = _context.UpcomingBookings
+        }
+
+        var upcomingBookings = new List<UpcomingBooking>();
+        try
+        {
+            upcomingBookings = _context.UpcomingBookings
             .Where(b => b.UserId == userId)
             .OrderBy(b => b.BookingDate)
             .Take(5)
@@ -43,11 +54,19 @@ public class HomeService : IHomeService
                 VenueName = b.VenueName,
                 VenueAddress = b.VenueAddress,
                 BookingDate = b.BookingDate,
-                Time = b.Time ?? "",
+                Time = b.Time,
                 Status = b.Status
             }).ToList();
+        }
+        catch (Exception ex)
+        {
 
-        var leaderboard = _context.Leaderboards
+        }
+
+        var leaderboard = new List<Leaderboard>();
+        try
+        {
+            leaderboard = _context.Leaderboards
             .OrderBy(l => l.Ranking)
             .Take(10)
             .Select(l => new Leaderboard
@@ -57,8 +76,16 @@ public class HomeService : IHomeService
                 Points = l.Points,
                 Ranking = l.Ranking
             }).ToList();
+        }
+        catch (Exception ex)
+        {
 
-        var tournaments = _context.Tournaments
+        }
+
+        var tournaments = new List<Tournament>();
+        try
+        {
+            tournaments = _context.Tournaments
             .OrderBy(t => t.Date)
             .Take(5)
             .Select(t => new Tournament
@@ -68,8 +95,16 @@ public class HomeService : IHomeService
                 Date = t.Date,
                 Status = t.Status
             }).ToList();
+        }
+        catch (Exception ex)
+        {
 
-        var announcements = _context.Announcements
+        }
+
+        var announcements = new List<Announcement>();
+        try
+        {
+            announcements = _context.Announcements
             .OrderBy(a => a.ExpiryDate)
             .Take(5)
             .Select(a => new Announcement
@@ -79,20 +114,16 @@ public class HomeService : IHomeService
                 Message = a.Message,
                 ExpiryDate = a.ExpiryDate,
             }).ToList();
+        }
+        catch (Exception ex)
+        {
+
+        }
 
         return new HomeResponse
         {
-            //UserProfile = new User
-            //{
-            //    Id = user.Id,
-            //    FullName = user.FullName,
-            //    ProfilePicUrl = user.ProfilePicUrl,
-            //    Points = user.Points,
-            //    Ranking = user.Ranking
-            //},
             FeaturedVenues = featuredVenues,
             UpcomingBookings = upcomingBookings,
-            //Leaderboard = leaderboard,
             Tournaments = tournaments,
             Announcements = announcements
         };
