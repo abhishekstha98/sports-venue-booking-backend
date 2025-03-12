@@ -172,7 +172,8 @@ namespace Infrastructure.Context
                 entity.Property(e => e.BookingDate).HasColumnType("datetime");
                 entity.Property(e => e.Status).HasMaxLength(50);
                 entity.Property(e => e.Time).HasMaxLength(10);
-                entity.Property(e => e.Venue);
+                entity.Property(e => e.VenueAddress);
+                entity.Property(e => e.VenueName);
             });
 
             modelBuilder.Entity<User>(entity =>

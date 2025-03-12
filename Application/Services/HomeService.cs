@@ -33,16 +33,17 @@ public class HomeService : IHomeService
                 Images = b.Images
             }).ToList();
 
-        var upcomingBookings = _context.Bookings
+        var upcomingBookings = _context.UpcomingBookings
             .Where(b => b.UserId == userId)
             .OrderBy(b => b.BookingDate)
             .Take(5)
             .Select(b => new UpcomingBooking
             {
                 BookingId = b.BookingId,
-                Venue = b.VenueId,
+                VenueName = b.VenueName,
+                VenueAddress = b.VenueAddress,
                 BookingDate = b.BookingDate,
-                Time = b.Time.ToString(),
+                Time = b.Time ?? "",
                 Status = b.Status
             }).ToList();
 

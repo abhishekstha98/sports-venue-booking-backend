@@ -7,11 +7,11 @@ public partial class Announcement
 {
     public int AnnouncementId { get; set; }
 
-    public string Title { get; set; } = null!;
+    public string? Title { get; set; } = null!;
 
     public string? Message { get; set; }
 
     public DateTime? ExpiryDate { get; set; }
 
-    public int ImageId { get; set; }
+    public int? ImageId { get; set; }
 }
